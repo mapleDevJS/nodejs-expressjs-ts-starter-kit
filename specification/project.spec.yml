@@ -1,0 +1,148 @@
+openapi: 3.1.0
+info:
+    title: A starter kit for building REST APIs using Node.js, Express.js, and TypeScript.
+    description: >
+        List of resources and routes of the server.
+    license:
+        name: MIT
+        url: https://opensource.org/licenses/MIT
+    version: 1.0.0
+
+tags:
+    - name: users
+      description: Actions with users.
+
+# Extracting common paths
+paths:
+    /users/register:
+        post:
+            tags:
+                - users
+            summary: User registration
+            description: Registers a new user.
+            requestBody:
+                $ref: '#/components/requestBodies/CreateUserRequestBody'
+            responses:
+                '201':
+                    $ref: '#/components/responses/UserResponse'
+                '409':
+                    description: A user with this email already exists.
+    /users/login:
+        post:
+            tags:
+                - users
+            summary: User authorization
+            description: Authorizes a user based on login and password.
+            requestBody:
+                $ref: '#/components/requestBodies/CreateUserRequestBody'
+            responses:
+                '200':
+                    $ref: '#/components/responses/UserResponse'
+                '401':
+                    description: Authorization error, please check the entered data.
+        get:
+            tags:
+                - users
+            summary: Check user authorization status
+            description: Returns information about the user's authorization status.
+            parameters:
+                - in: header
+                  name: Authorization
+                  description: Bearer token
+                  required: true
+                  schema:
+                      type: string
+                      example: Bearer T2xpdmVyLmNvbm5lckBnbWFpbC5jb20=
+            responses:
+                '200':
+                    $ref: '#/components/responses/UserResponse'
+                '401':
+                    description: Authorization error, please check the entered data.
+    /users/{userId}/avatar:
+        post:
+            tags:
+                - users
+            summary: Upload avatar image
+            description: Uploads the user's avatar image. The avatar image must be in `png` or `jpg` format.
+            parameters:
+                - in: header
+                  name: Authorization
+                  description: Bearer token
+                  required: true
+                  schema:
+                      type: string
+                      example: Bearer T2xpdmVyLmNvbm5lckBnbWFpbC5jb20=
+            requestBody:
+                $ref: '#/components/requestBodies/UploadAvatarRequestBody'
+            responses:
+                '200':
+                    description: Avatar received.
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                properties:
+                                    avatarUrl:
+                                        type: string
+                                        example: img/1.png
+
+# Extract common components
+components:
+    schemas:
+        createUser:
+            type: object
+            properties:
+                email:
+                    type: string
+                    example: keks@htmlacademy.ru
+                password:
+                    type: string
+                    example: 123456
+        user:
+            type: object
+            properties:
+                avatarUrl:
+                    type: string
+                    example: img/1.png
+                email:
+                    type: string
+                    example: keks@htmlacademy.ru
+                id:
+                    type: string
+                    example: 6329c3d6a04ab1061c6425ea
+                isPro:
+                    type: boolean
+                    example: false
+                name:
+                    type: string
+                    example: keks.academy
+                token:
+                    type: string
+                    example: T2xpdmVyLmNvbm5lckBnbWFpbC5jb20=
+    requestBodies:
+        CreateUserRequestBody:
+            description: Information for creating a new user.
+            content:
+                application/json:
+                    schema:
+                        $ref: '#/components/schemas/createUser'
+            required: true
+
+        UploadAvatarRequestBody:
+            description: Upload avatar image file.
+            content:
+                multipart/form-data:
+                    schema:
+                        type: object
+                        properties:
+                            avatar:
+                                type: string
+                                format: binary
+
+    responses:
+        UserResponse:
+            description: User object.
+            content:
+                application/json:
+                    schema:
+                        $ref: '#/components/schemas/user'

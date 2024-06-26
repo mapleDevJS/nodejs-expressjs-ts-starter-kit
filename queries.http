@@ -1,0 +1,71 @@
+###
+# Environment Variables
+@host = localhost
+@port = 3132
+@baseUrl = http://{{host}}:{{port}}
+@contentTypeJson = application/json
+@bearerToken = eyJhbGciOiJIUzI1NiJ9.eyJlbWFpbCI6InRvcmFuczJAb3Zlcmxvb2submV0IiwiaWQiOiI2NjdiNmVkZjVjMGMyNjE4NTg0MGRhZjAiLCJpYXQiOjE3MTkzNjUzNjUsImV4cCI6MTcxOTUzODE2NX0.P7pi5UEdoPcylqe2hKzJ2Ga1k_dS17uEQpf5yHw4tbU
+@userId = 667b6edf5c0c26185840daf0
+@boundary = ----WebKitFormBoundary7MA4YWxkTrZu0gW
+@fileName = default-avatar.jpg
+
+###
+
+###
+# Test Data
+GET {{baseUrl}}/api HTTP/1.1
+Accept: {{contentTypeJson}}
+
+###
+
+###
+# Users
+
+## User Registration
+POST {{baseUrl}}/users/register HTTP/1.1
+Content-Type: {{contentTypeJson}}
+Accept: {{contentTypeJson}}
+
+{
+  "email": "torans2@overlook.net",
+  "avatarPath": "torrance.png",
+  "firstName": "Jack",
+  "lastName": "Torrance",
+  "password": "shining"
+}
+
+###
+
+## User Login
+POST {{baseUrl}}/users/login HTTP/1.1
+Content-Type: {{contentTypeJson}}
+Accept: {{contentTypeJson}}
+
+{
+  "email": "torans2@overlook.net",
+  "password": "shining"
+}
+
+###
+
+## Upload Avatar for User
+POST {{baseUrl}}/users/{{userId}}/avatar HTTP/1.1
+Authorization: Bearer {{bearerToken}}
+Content-Type: multipart/form-data; boundary={{boundary}}
+Accept: {{contentTypeJson}}
+
+--{{boundary}}
+Content-Disposition: form-data; name="avatar"; filename="{{fileName}}"
+Content-Type: image/jpeg
+
+< ./static/default-avatar.jpg
+--{{boundary}}--
+
+###
+
+## User Token Verification
+GET {{baseUrl}}/users/login HTTP/1.1
+Authorization: Bearer {{bearerToken}}
+Accept: {{contentTypeJson}}
+
+###

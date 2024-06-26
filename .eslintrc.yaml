@@ -1,0 +1,42 @@
+# Root configuration file for ESLint
+root: true
+
+# Specifies the environments used; es2021 and node in this case
+env:
+    es2021: true  # Enables ECMAScript 2021 globals
+    node: true    # Enables Node.js global variables and Node.js scoping
+
+# Specifies the parser to be used; '@typescript-eslint/parser' in this case
+parser: '@typescript-eslint/parser'
+
+# Parser options to specify ECMAScript version and source type
+parserOptions:
+    ecmaVersion: 2021  # Allows for the parsing of modern ECMAScript features
+    sourceType: module # Allows for the use of imports
+
+# ESLint plugins to extend the base functionality
+plugins:
+    - '@typescript-eslint' # Adds TypeScript support to ESLint
+
+# Series of shareable ESLint configurations to extend
+extends:
+    - 'plugin:@typescript-eslint/recommended' # Recommended rules from the @typescript-eslint/eslint-plugin
+    - 'plugin:import/errors' # Import plugin to check for import errors
+    - 'plugin:import/warnings' # Import plugin to check for import warnings
+    - 'plugin:import/typescript' # Import plugin to check for TypeScript-related import errors
+    - 'htmlacademy/node' # HTML Academy's Node.js coding standards
+    - 'prettier' # Uses prettier for code formatting
+
+# Custom ESLint rules
+rules:
+    # Custom rules go here
+    import/order:  # Ensures consistent ordering of import statements
+        - 'error'
+        - groups:
+              - 'builtin' # Built-in modules (e.g., fs, path)
+              - 'external' # External modules (e.g., lodash, react)
+              - 'internal' # Internal modules
+              - ['sibling', 'parent'] # Sibling and parent modules
+              - 'index' # Index file imports
+          newlines-between: 'always' # Enforces newlines between import groups
+    import/no-unresolved: 0 # Disables the rule that disallows unresolved imports

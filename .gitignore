@@ -1,0 +1,25 @@
+# IDE-specific files and directories
+.vscode/
+.idea/*
+
+# Dependency directories
+/node_modules/
+/mongodb/
+
+# Build and output directories
+/build/
+/lib/
+/dist/
+/docs/
+/upload/
+coverage
+
+# System files
+.DS_Store
+
+# Log files
+*.log
+
+# Environment files
+*.env
+.env.local

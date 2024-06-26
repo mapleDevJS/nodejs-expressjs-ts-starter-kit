@@ -1,0 +1,5 @@
+{
+    "exec": "npm run ts -- --files ./src/main.ts | pino-pretty --colorize --levelFirst --translateTime SYS:standard --ignore \"pid,hostname\" --singleLine --messageFormat \"{msg}\" --customColors \"msg:yellow,level:cyan\" && echo 'Process completed successfully' || echo 'Process failed'",
+    "ext": "ts,json",
+    "watch": ["src"]
+}

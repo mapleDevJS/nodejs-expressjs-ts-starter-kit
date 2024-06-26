@@ -1,0 +1,26 @@
+# Ignore artifacts:
+dist
+coverage
+
+# Ignore all node_modules:
+node_modules
+
+# Ignore logs:
+*.log
+
+# Ignore lock files:
+package-lock.json
+# Ignore environments:
+.env
+.env.local
+.env.*.local
+
+# Ignore specific directories:
+public
+tmp
+temp
+
+# Ignore specific file types:
+# Ignore any file in a specific folder:
+public/*
+coverage/*

@@ -1,0 +1,36 @@
+{
+    "api": {
+        "users": [
+            "Louis Eugene",
+            "John Marcus",
+            "Bryce Edgar",
+            "Steven Clark",
+            "Eric Nathaniel",
+            "Travis Connor",
+            "Arthur Finley",
+            "Vincent Grey",
+            "Nathaniel Ross",
+            "Oscar Bennett"
+        ],
+        "emails": [
+            "snow@pisem.local",
+            "wave@stuff.local",
+            "cloud@enviro.local",
+            "branch@ecosystem.local",
+            "stone@rockbase.local",
+            "seed@flora.local",
+            "flash@lightning.local",
+            "echo@soundwave.local",
+            "ember@firecore.local",
+            "raven@nightbird.local"
+        ],
+        "avatars": [
+            "user.jpg",
+            "photo.jpg",
+            "awesome-avatar.jpg",
+            "roland.jpg",
+            "smit.jpg",
+            "coffee.jpg"
+        ]
+    }
+}

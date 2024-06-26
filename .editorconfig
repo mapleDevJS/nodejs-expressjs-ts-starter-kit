@@ -1,0 +1,15 @@
+# Root EditorConfig file
+root = true
+
+# Global settings for all files
+[*]
+charset = utf-8               # Set character encoding to UTF-8
+end_of_line = lf              # Use LF as line ending
+indent_size = 4               # Use 4 spaces for indentation
+indent_style = space          # Set indentation style to spaces
+insert_final_newline = true   # Ensure EOF newline for all files
+trim_trailing_whitespace = true # Remove trailing whitespace
+
+# Settings for Markdown files
+[*.md]
+trim_trailing_whitespace = false # Allow trailing whitespace in Markdown files

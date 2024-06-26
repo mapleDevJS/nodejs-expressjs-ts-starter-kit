@@ -1,0 +1,33 @@
+# .eslintignore
+# This file is used to specify files and directories that should be ignored by ESLint.
+
+# Directories to ignore
+dist/
+node_modules/
+coverage/
+public/
+.venv/
+.build/
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# Environment files
+.env
+.env.local
+.env.test
+.env.production
+
+# Build-related files
+package-lock.json
+.pnp.js
+.pnp.cjs
+.pnp.loader.mjs
+
+# IDE-specific files
+.idea/
+*.iml
+
+# Ignore all markdown files
+*.md
